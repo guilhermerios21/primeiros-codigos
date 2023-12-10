@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void print_arq(){
+	char nomes[50];
+	FILE *pont_arq;
+	
+	pont_arq = fopen("alunos.txt", "a+");
+	scanf(" %[^\n]s", nomes);
+	fprintf(pont_arq, "%s",nomes);
+	fclose(pont_arq);
+}
+
+void ler_arq(){
+	FILE *pont_arq;
+	
+	pont_arq = fopen("alunos.txt", "r");
+	char texto_str[100];
+	while(fgets(texto_str, 100, pont_arq) != NULL);
+	printf("%s\n", texto_str);
+	fclose(pont_arq);
+}
+
+int main(){
+	int resp, ans;
+
+ 	while(ans ==1){
+		printf("Digite 1 para gravar nomes\n");
+		printf("Digite 2 para ler nomes gravados\n");
+		printf("Digite 3 para sair\n");
+		scanf("%d", &resp);
+
+		switch(resp){
+			case 1:
+				print_arq();	
+				break;
+			case 2:
+				ler_arq();
+				break;
+			case 3:
+				return 0;
+				break;
+			default:
+				printf("resposta invalida\n");
+				return 0;
+		}
+		printf("digite 1 para continuar, digite 0 para sair\n");
+		scanf("%d", &ans);
+	}
+	
+	return 0;
+}
